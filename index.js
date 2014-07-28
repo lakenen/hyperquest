@@ -29,7 +29,7 @@ function hyperquest (uri, opts, cb, extra) {
     if (extra) opts.method = extra.method;
     
     var req = new Req(opts);
-    var ws = req.duplex && through();
+    var ws = req.duplex && through({ objectMode: true });
     var rs = through();
     
     var dup = req.duplex ? duplexer(ws, rs) : rs;
